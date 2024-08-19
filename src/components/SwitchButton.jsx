@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { toast } from 'react-toastify';
 
-const getListdata = async (initName, rating) => {
+const updateRating  = async (initName, rating) => {
   try {
     const res = await fetch(`/api/admin/block`, {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36',
@@ -40,9 +40,12 @@ const Switcher = ({ initialChecked, initName }) => {
     if (!isDisabled) return;
 
     const newRating = isChecked ? 1 : 3;
-    await getListdata(initName, newRating);
+    await updateRating(initName, newRating);
     setIsChecked(!isChecked);
   };
+
+
+
 
   return (
     <label className="autoSaverSwitch relative inline-flex cursor-pointer select-none items-center">
@@ -61,9 +64,10 @@ const Switcher = ({ initialChecked, initName }) => {
           className={`dot h-[18px] w-[18px] rounded-full bg-white duration-200 ${isChecked ? 'translate-x-6' : ''}`}
         ></span>
       </span>
-      <span className="label flex items-center text-sm font-medium text-black">
-        <span className="pl-1"> {isChecked ? 'On' : 'Off'} </span>
-      </span>
+
+      {/* <span className="label flex items-center text-sm font-medium text-black">
+               <span className="pl-1"> {isChecked ? 'On' : 'Off'} </span>
+      </span> */}
     </label>
   );
 };
