@@ -21,7 +21,7 @@ jobs:
 
       # Step 2: run the sync action
       - name: Sync upstream main changes
-        id: sync main
+        id: sync_main
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
         with:
           upstream_sync_repo: x-dr/telegraph-Image
@@ -34,7 +34,7 @@ jobs:
           
       # Step 3: run the sync action
       - name: Sync upstream dev changes
-        id: sync dev
+        id: sync_dev
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4
         with:
           upstream_sync_repo: x-dr/telegraph-Image
